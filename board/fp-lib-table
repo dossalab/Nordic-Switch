@@ -1,3 +1,3 @@
 (fp_lib_table
-  (lib (name nordic-switch)(type KiCad)(uri ${KIPRJMOD}/nordic-switch.pretty)(options "")(descr ""))
+  (lib (name "nordic-switch")(type "KiCad")(uri "${KIPRJMOD}/nordic-switch.pretty")(options "")(descr ""))
 )
