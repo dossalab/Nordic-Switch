@@ -1,0 +1,50 @@
+[package]
+name = "nordic-switch-sw-rs"
+version = "0.1.0"
+edition = "2021"
+
+[profile.dev]
+opt-level = 1
+
+[profile.release]
+opt-level = "z"
+
+[features]
+default = ["defmt-logging", "platform-nrf52832"]
+defmt-logging = [
+  "defmt",
+  "defmt-rtt",
+  "embassy-executor/defmt",
+  "embassy-nrf/defmt",
+  "nrf-softdevice/defmt",
+  "panic-probe/print-defmt"
+]
+platform-nrf52832 = [
+  "embassy-nrf/nrf52832",
+  "nrf-softdevice/nrf52832"
+]
+
+[dependencies]
+cortex-m = "0.7.6"
+cortex-m-rt = "0.7.0"
+panic-probe = "0.3"
+defmt = { version = "0.3", optional = true }
+defmt-rtt = { version = "0.4.0", optional = true }
+git-version = "0.3.5"
+heapless = "0.7.1"
+
+[dependencies.embassy-time]
+git = "https://github.com/embassy-rs/embassy"
+features = [ "nightly", "unstable-traits" ]
+
+[dependencies.embassy-executor]
+git = "https://github.com/embassy-rs/embassy"
+features = [ "nightly", "arch-cortex-m", "executor-thread", "executor-interrupt", "integrated-timers" ]
+
+[dependencies.embassy-nrf]
+git = "https://github.com/embassy-rs/embassy"
+features = [ "nightly", "time-driver-rtc1", "gpiote", "unstable-traits" ]
+
+[dependencies.nrf-softdevice]
+git = "https://github.com/dossalab/nrf-softdevice"
+features = [ "s132", "ble-gatt-server", "ble-peripheral", "critical-section-impl" ]
